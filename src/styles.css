@@ -1067,7 +1067,9 @@ p {
 .chat-thread {
   display: grid;
   gap: 14px;
-  animation: chat-in 220ms ease both;
+  margin-top: 22px;
+  overflow: hidden;
+  animation: chat-expand 420ms ease both;
 }
 
 .chat-bubble {
@@ -1092,6 +1094,7 @@ p {
   justify-self: end;
   border-radius: 18px 18px 4px 18px;
   background: rgba(69, 188, 240, 0.14);
+  animation: chat-bubble-in 260ms ease both;
 }
 
 .chat-bubble.user span {
@@ -1102,10 +1105,21 @@ p {
   justify-self: start;
   border-radius: 18px 18px 18px 4px;
   background: rgba(4, 12, 22, 0.72);
+  animation: chat-bubble-in 300ms ease both;
 }
 
 .chat-bubble.assistant span {
   color: var(--gold);
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: cursor-blink 820ms steps(2, start) infinite;
 }
 
 @keyframes assistant-pulse {
@@ -1121,7 +1135,21 @@ p {
   }
 }
 
-@keyframes chat-in {
+@keyframes chat-expand {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    max-height: 900px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chat-bubble-in {
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -1130,6 +1158,18 @@ p {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  48% {
+    opacity: 1;
+  }
+
+  49%,
+  100% {
+    opacity: 0;
   }
 }
 
