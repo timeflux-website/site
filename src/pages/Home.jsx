@@ -20,7 +20,7 @@ const capabilities = [
   },
   {
     title: 'Connect and extend',
-    text: 'Support data imports and exports, API access, SSO, and guided assistant actions within the legal workflow.',
+    text: 'Support data imports and exports, API access, SSO, and an artificial intelligence assistant for guided actions within the legal workflow.',
   },
 ];
 

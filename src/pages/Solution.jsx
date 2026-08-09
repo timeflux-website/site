@@ -27,8 +27,8 @@ const solutionAreas = [
     meta: 'Use operational records to support oversight and reporting.',
   },
   {
-    title: 'Assistant and connected access',
-    text: 'Use guided assistant actions for search, help, task creation, and time recording, alongside SSO, API access, and CSV/XML data exchange.',
+    title: 'AI assistant and connected access',
+    text: 'Use an artificial intelligence assistant for guided search, help, task creation, and time recording, alongside SSO, API access, and CSV/XML data exchange.',
     meta: 'Extend access to data and common actions where appropriate.',
   },
 ];
