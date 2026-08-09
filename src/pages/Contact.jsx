@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageHero from '../components/PageHero.jsx';
 
 const quickAnswers = [
@@ -40,7 +40,40 @@ const quickAnswers = [
 ];
 
 function Contact() {
-  const [selectedQuestion, setSelectedQuestion] = useState(quickAnswers[0]);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [showAssistantAnswer, setShowAssistantAnswer] = useState(false);
+  const [typedAnswer, setTypedAnswer] = useState('');
+
+  useEffect(() => {
+    if (!selectedQuestion) {
+      return undefined;
+    }
+
+    setShowAssistantAnswer(false);
+    setTypedAnswer('');
+
+    let typingInterval;
+    const answerDelay = window.setTimeout(() => {
+      const words = selectedQuestion.answer.split(' ');
+      let wordIndex = 0;
+
+      setShowAssistantAnswer(true);
+
+      typingInterval = window.setInterval(() => {
+        wordIndex += 1;
+        setTypedAnswer(words.slice(0, wordIndex).join(' '));
+
+        if (wordIndex >= words.length) {
+          window.clearInterval(typingInterval);
+        }
+      }, 58);
+    }, 520);
+
+    return () => {
+      window.clearTimeout(answerDelay);
+      window.clearInterval(typingInterval);
+    };
+  }, [selectedQuestion]);
 
   return (
     <>
@@ -82,7 +115,7 @@ function Contact() {
             <div className="question-list" aria-label="Common contact questions">
               {quickAnswers.map((item) => (
                 <button
-                  className={item.question === selectedQuestion.question ? 'active' : ''}
+                  className={item.question === selectedQuestion?.question ? 'active' : ''}
                   key={item.question}
                   type="button"
                   onClick={() => setSelectedQuestion(item)}
@@ -91,16 +124,25 @@ function Contact() {
                 </button>
               ))}
             </div>
-            <div className="chat-thread" key={selectedQuestion.question}>
-              <div className="chat-bubble user">
-                <span>You</span>
-                <p>{selectedQuestion.question}</p>
+            {selectedQuestion && (
+              <div className="chat-thread" key={selectedQuestion.question}>
+                <div className="chat-bubble user">
+                  <span>You</span>
+                  <p>{selectedQuestion.question}</p>
+                </div>
+                {showAssistantAnswer && (
+                  <div className="chat-bubble assistant">
+                    <span>TIMEFLUX</span>
+                    <p>
+                      {typedAnswer}
+                      {typedAnswer !== selectedQuestion.answer && (
+                        <span className="typing-cursor" aria-hidden="true"></span>
+                      )}
+                    </p>
+                  </div>
+                )}
               </div>
-              <div className="chat-bubble assistant">
-                <span>TIMEFLUX</span>
-                <p>{selectedQuestion.answer}</p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
