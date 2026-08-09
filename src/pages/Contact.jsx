@@ -69,12 +69,16 @@ function Contact() {
             <p className="eyebrow">Quick answers</p>
             <h2>Useful answers before you write.</h2>
             <p>
-              Select a question below for a short answer. For anything more
-              specific, email us and we will respond directly.
+              Choose a question for a short answer. For anything more specific,
+              email us and we will respond directly.
             </p>
           </div>
 
           <div className="quick-answer-shell" aria-live="polite">
+            <div className="assistant-status">
+              <span aria-hidden="true"></span>
+              <strong>TIMEFLUX Assistant</strong>
+            </div>
             <div className="question-list" aria-label="Common contact questions">
               {quickAnswers.map((item) => (
                 <button
@@ -87,10 +91,15 @@ function Contact() {
                 </button>
               ))}
             </div>
-            <div className="answer-bubble">
-              <span>TIMEFLUX</span>
-              <h3>{selectedQuestion.question}</h3>
-              <p>{selectedQuestion.answer}</p>
+            <div className="chat-thread" key={selectedQuestion.question}>
+              <div className="chat-bubble user">
+                <span>You</span>
+                <p>{selectedQuestion.question}</p>
+              </div>
+              <div className="chat-bubble assistant">
+                <span>TIMEFLUX</span>
+                <p>{selectedQuestion.answer}</p>
+              </div>
             </div>
           </div>
         </div>
