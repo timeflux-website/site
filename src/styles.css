@@ -575,22 +575,32 @@ p {
 
 .invoice-result {
   display: grid;
-  min-height: 84px;
+  max-height: 0;
   grid-template-columns: 62px minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
-  margin-top: 16px;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
+  overflow: hidden;
+  margin-top: 0;
+  border-top: 1px solid transparent;
+  padding-top: 0;
   opacity: 0;
   transform: translateY(8px);
   transition:
+    max-height 260ms ease,
+    margin-top 260ms ease,
+    border-color 260ms ease,
+    padding-top 260ms ease,
     opacity 260ms ease,
     transform 260ms ease;
   visibility: hidden;
 }
 
 .invoice-result.is-visible {
+  max-height: 260px;
+  min-height: 84px;
+  margin-top: 16px;
+  border-top-color: var(--line);
+  padding-top: 16px;
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
@@ -600,6 +610,24 @@ p {
   margin-bottom: 4px;
   font-size: 0.76rem;
   line-height: 1.4;
+}
+
+.workflow-chat {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
+
+.workflow-chat a {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.workflow-chat a:hover,
+.workflow-chat a:focus-visible {
+  text-decoration: underline;
+  outline: none;
 }
 
 .invoice-document {
