@@ -151,8 +151,12 @@ a {
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(340px, 1.08fr);
-  align-items: center;
+  align-items: start;
   gap: 62px;
+}
+
+.hero-copy {
+  padding-top: 52px;
 }
 
 .eyebrow {
@@ -283,7 +287,7 @@ p {
 }
 
 .workflow-demo {
-  min-height: 370px;
+  min-height: 430px;
 }
 
 .workflow-demo::after {
@@ -307,6 +311,12 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
   align-items: stretch;
+  margin-top: 52px;
+  transition: margin-top 260ms ease;
+}
+
+.stage-generating .workflow-track,
+.stage-complete .workflow-track {
   margin-top: 28px;
 }
 
@@ -1265,6 +1275,10 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .hero-copy {
+    padding-top: 0;
+  }
+
   .card-grid,
   .card-grid.three,
   .pricing-grid,
@@ -1355,6 +1369,7 @@ p {
 
   .workflow-track {
     grid-template-columns: 1fr;
+    margin-top: 28px;
   }
 
   .workflow-connector {
