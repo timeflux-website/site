@@ -104,8 +104,8 @@ function HeroWorkflow() {
         </section>
       </div>
 
-      <div className={`invoice-result ${hasInvoice ? 'is-visible' : 'is-prompt'}`}>
-        {hasInvoice ? (
+      <div className={`invoice-result ${hasInvoice ? 'is-visible' : ''}`} aria-hidden={!hasInvoice}>
+        {hasInvoice && (
           <>
             <div className="invoice-document" aria-hidden="true">
               <span>PDF</span>
@@ -118,7 +118,7 @@ function HeroWorkflow() {
               <strong>{stage === 'complete' ? 'Invoice generated' : 'Preparing document...'}</strong>
             </div>
             <p className="workflow-chat">
-              Test this and other time and billing workflows in the real app.{' '}
+              Try this and other time and billing workflows in the real app.{' '}
               <Link to="/contact">Contact TIMEFLUX to request a free trial.</Link>
             </p>
             {stage === 'complete' && (
@@ -127,11 +127,6 @@ function HeroWorkflow() {
               </button>
             )}
           </>
-        ) : (
-          <p className="workflow-chat">
-            Try the workflow, then test more time and billing journeys in the real app.{' '}
-            <Link to="/contact">Contact TIMEFLUX to request a free trial.</Link>
-          </p>
         )}
       </div>
     </div>
