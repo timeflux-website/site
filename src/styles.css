@@ -287,7 +287,7 @@ p {
 }
 
 .workflow-demo {
-  min-height: 430px;
+  min-height: 0;
 }
 
 .workflow-demo::after {
@@ -579,27 +579,36 @@ p {
 
 .invoice-result {
   display: grid;
+  max-height: 0;
   grid-template-columns: 62px minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
-  min-height: 96px;
-  margin-top: 16px;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
+  overflow: hidden;
+  margin-top: 0;
+  border-top: 1px solid transparent;
+  padding-top: 0;
+  opacity: 0;
+  transform: translateY(8px);
   transition:
+    max-height 260ms ease,
+    margin-top 260ms ease,
+    border-color 260ms ease,
+    padding-top 260ms ease,
     opacity 260ms ease,
     transform 260ms ease;
+  visibility: hidden;
 }
 
 .invoice-result.is-visible {
+  max-height: 260px;
+  min-height: 96px;
+  margin-top: 16px;
+  border-top-color: var(--line);
+  padding-top: 16px;
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
 }
-
-.invoice-result.is-prompt {
-  grid-template-columns: 1fr;
-}
-
 .invoice-result p {
   margin-bottom: 4px;
   font-size: 0.76rem;
@@ -1348,7 +1357,7 @@ p {
   }
 
   .workflow-demo {
-    min-height: 520px;
+    min-height: 0;
   }
 
   .workflow-track {
