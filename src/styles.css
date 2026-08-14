@@ -156,7 +156,7 @@ a {
 }
 
 .hero-copy {
-  padding-top: 52px;
+  padding-top: 0;
 }
 
 .eyebrow {
@@ -622,6 +622,9 @@ p {
 }
 
 .workflow-chat a {
+  display: block;
+  width: fit-content;
+  margin-top: 4px;
   color: var(--accent);
   font-weight: 800;
   text-decoration: none;
