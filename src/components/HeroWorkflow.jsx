@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const statusLabels = {
   idle: 'Ready to record',
@@ -45,7 +46,7 @@ function HeroWorkflow() {
   return (
     <div className={`product-panel workflow-demo stage-${stage}`}>
       <div className="panel-topline">
-        <span>Case-to-invoice workflow</span>
+        <span>Test case-to-invoice workflow</span>
         <strong aria-live="polite">{statusLabels[stage]}</strong>
       </div>
 
@@ -116,6 +117,10 @@ function HeroWorkflow() {
               <p>Invoice output</p>
               <strong>{stage === 'complete' ? 'Invoice generated' : 'Preparing document...'}</strong>
             </div>
+            <p className="workflow-chat">
+              Test this and other time and billing workflows in the real app.{' '}
+              <Link to="/contact">Contact TIMEFLUX to request a free trial.</Link>
+            </p>
             {stage === 'complete' && (
               <button className="workflow-reset" type="button" onClick={resetWorkflow}>
                 Reset
